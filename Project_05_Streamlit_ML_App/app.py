@@ -19,7 +19,14 @@ st.write(
 # Load the trained machine learning model
 @st.cache_resource
 def load_model():
-    return joblib.load("model.joblib")
+    import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+@st.cache_resource
+def load_model():
+    model_path = os.path.join(BASE_DIR, "model.joblib")
+    return joblib.load(model_path)
 
 model = load_model()
 # Passenger details
