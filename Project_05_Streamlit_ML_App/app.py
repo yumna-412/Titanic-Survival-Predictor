@@ -1,6 +1,7 @@
 import streamlit as st
 import joblib
 import pandas as pd
+import os
 
 # Page configuration
 st.set_page_config(
@@ -17,10 +18,8 @@ st.write(
     "the estimated chance of survival."
 )
 # Load the trained machine learning model
-@st.cache_resource
-def load_model():
-    import os
 
+  
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 @st.cache_resource
