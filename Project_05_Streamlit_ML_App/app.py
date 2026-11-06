@@ -25,7 +25,14 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 @st.cache_resource
 def load_model():
     model_path = os.path.join(BASE_DIR, "model.joblib")
-    return joblib.load(model_path)
+    try:
+        return joblib.load(model_path)
+    except FileNotFoundError:
+        st.error("Model file is missing. Please check the project files.")
+        st.stop()
+    except Exception:
+        st.error("Unable to load the model. Please try again later.")
+        st.stop()
 
 model = load_model()
 # Passenger details
